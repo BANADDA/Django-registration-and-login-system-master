@@ -1,0 +1,51 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container bg">
+<div>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Phone Number</th>
+      <th>Date Joined</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+    <tbody>
+      {% for user in users %}
+  <tr>
+          <td>
+        <div class="d-flex align-items-center">
+          <img
+              src="{{ user.image_url }}"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{ user.first_name }} {{ user.last_name }}</p>
+            <p class="text-muted mb-0">{{ user.email }}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ user.location }}</p>
+      </td>
+            <td>
+        <span class="badge badge-success rounded-pill d-inline">{{ user.phone_number }}</span>
+      </td>
+    <td>{{user.timestamp}}</td>
+          <td>
+        <button type="button" class="btn btn-link btn-sm btn-rounded">
+          Edit
+        </button>
+      </td>
+  </tr>
+{% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

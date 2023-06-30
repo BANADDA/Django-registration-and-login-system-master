@@ -1,0 +1,36 @@
+{% extends 'users/base.html' %} {% block content %}
+<style>
+  bg {
+    background-image: url("media/selecting-best-maize-variety.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+</style>
+<div id="histogram">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ {{ plot_html|safe }}
+</div>
+<div class="table-responsive-sm">
+    <table class="table table-hover table-dark table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="row">Image URL</th>
+          <th scope="row">Latitude & Longitude</th>
+          <th scope="row">Date Taken</th>
+          <th scope="row">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for image in images %}
+        <tr>
+          <td>{{ image.image_url }}</td>
+          <td>( {{ image.latitude }}, {{ image.longitude }} )</td>
+          <td>{{image.timestamp}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

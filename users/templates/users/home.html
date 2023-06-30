@@ -1,0 +1,42 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+    <div class="jumbotron jumbo_text">
+    <h1 class="display-4 text-center font-weight-bold">AgriExpert</h1>
+        <h1 class="display-15 font-weight-bold">Hi {{user.first_name.title|default:'guest, welcome to Admin Pannel'}}</h1>
+        <p class="sm font-weight-bold">
+            AgriExpert is a mobile app designed to revolutionize plant disease diagnosis. Using advanced AI algorithms, it provides farmers and gardeners with an efficient and accurate solution to identify and combat plant diseases. With AgriExpert, you can simply capture a photo of a diseased plant, and the app will analyze it to determine the specific disease affecting the plant. Additionally, the app offers real-time monitoring and data analytics of user submissions, enabling administrators to track disease patterns and provide insights for better plant health management.
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+            {% if user.is_authenticated %}
+            <div class="row my-4">
+                <div class="col-sm-6">
+                    <div class="card" >
+                    <img class="card-img-top" src="media/Farm.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Registered Users</h5>
+                        <p class="card-text">View registered mobile application users and farmer data</p>
+                        <a href="{% url 'user_list' %}" class="btn btn-primary">View</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card" >
+                    <img class="card-img-top" src="media/analysis.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Analytics</h5>
+                        <p class="card-text">Monitor collected data</p>
+                        <a href="{% url 'data_list' %}" class="btn btn-primary">View</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+             <a class="btn btn-danger btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+            {% else %}
+             <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+            {% endif %}
+        </p>
+    </div>
+
+{% endblock content %}
